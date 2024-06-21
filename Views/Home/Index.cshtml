@@ -1,8 +1,32 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@using TestAzureDepSlots.Data
+@model TestAzureDepSlots.Data.Employee
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <form asp-controller="Home" asp-action="Register" method="post">
+        <!-- Input and Submit elements -->
+        Name: <input asp-for="Name"/>
+        <button type="submit">Register</button>
+    </form>
+    
+    <table style="border: 1px solid black;">
+        <thead style="border: 1px solid black;">
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+        </tr>
+        </thead>
+        <tbody style="border: 1px solid grey;">
+        @foreach (Employee emp in ViewBag.Employees)
+        {
+            <tr style="border: 1px solid grey;">
+                <td style="border-right: 1px solid grey;">@emp.Id</td>
+                <td>@emp.Name</td>
+            </tr>
+        }
+        </tbody>
+    </table>
 </div>
